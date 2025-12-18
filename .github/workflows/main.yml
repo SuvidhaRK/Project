@@ -1,0 +1,36 @@
+name: Simple CI/CD Pipeline
+
+# When to run the pipeline
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Get the code
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # Step 2: Build step (dummy build)
+    - name: Build
+      run: echo "Building HTML project..."
+
+    # Step 3: Test step (simple check)
+    - name: Test
+      run: |
+        echo "Running tests..."
+        if [ -f index.html ]; then
+          echo "Test Passed: index.html exists"
+        else
+          echo "Test Failed: index.html missing"
+          exit 1
+        fi
+
+    # Step 4: Deploy step (demo only)
+    - name: Deploy
+      run: echo "Deploying HTML application 🚀"
