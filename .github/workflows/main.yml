@@ -24,10 +24,10 @@ jobs:
     - name: Test
       run: |
         echo "Running tests..."
-        if [ -f index.html ]; then
-          echo "Test Passed: index.html exists"
+        if [ -f sample.html ]; then
+          echo "Test Passed: sample.html exists"
         else
-          echo "Test Failed: index.html missing"
+          echo "Test Failed: sample.html missing"
           exit 1
         fi
 
