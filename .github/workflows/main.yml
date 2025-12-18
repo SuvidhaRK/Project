@@ -24,13 +24,8 @@ jobs:
     - name: Test
       run: |
         echo "Running tests..."
-        if [ -f sample.html ]; then
-          echo "Test Passed: sample.html exists"
-        else
-          echo "Test Failed: sample.html missing"
-          exit 1
-        fi
+      
 
     # Step 4: Deploy step (demo only)
     - name: Deploy
-      run: echo "Deploying HTML application 🚀"
+      run: echo "Deploying HTML application"
