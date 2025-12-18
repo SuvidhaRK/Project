@@ -3,3 +3,5 @@ three
 to test the push after the restriction enforced
 once again
 hello
+try this 
+ok
