@@ -1,21 +1,35 @@
-name: Jekyll site CI
+name: Deploy sample.html as main page
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  build:
-
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the site in the jekyll/builder container
-      run: |
-        cp sample.html index.html
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Debug – list files
+        run: |
+          ls -R
+
+      - name: Copy sample.html to index.html
+        run: |
+          cp sample.html index.html
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
