@@ -21,7 +21,11 @@ jobs:
       - name: Debug – list files
         run: |
           ls -R
-
+      - name: Validate HTML
+        run: |
+            sudo apt-get update
+            sudo apt-get install tidy
+            tidy -errors sample.html || true
       - name: Copy sample.html to index.html
         run: |
           cp sample.html index.html
